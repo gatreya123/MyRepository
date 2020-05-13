@@ -26,11 +26,12 @@ pipeline {
          //  def deployment = input (message: 'is it new build ', ok: 'Button', parameters: [booleanParam(defaultValue: false, description: 'just push the button', name: 'yes')])
            
           // if (deployment == true) {
-           
-           sh "scp -i deployment.yml service.yml /home/ec2-user"
+           sh "ssh -T root@3.20.205.215"
+           scp "scp -r deployment.yml service.yml /Gourav"
+           sh "ssh -T root@3.20.205.215 kubectl create -f deployment.yml"
            
         
-           sh "kubectl create -f deployment.yml"
+           
           // }
           // else 
         //   {
