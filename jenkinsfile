@@ -23,7 +23,7 @@ pipeline {
        stage ('Deploy') {
        
            steps {
-           def deployment = input message: 'is it new build ', ok: 'Button', parameters: [booleanParam(defaultValue: false, description: 'just push the button', name: 'yes')])])
+           def deployment = input (message: 'is it new build ', ok: 'Button', parameters: [booleanParam(defaultValue: false, description: 'just push the button', name: 'yes')])
            
            if (deployment == true) {
            
