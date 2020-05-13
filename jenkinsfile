@@ -23,7 +23,7 @@ pipeline {
        stage ('Deploy') {
        
            steps {
-           def deployment = input(message: "is it new build? " , ok: "Button", parameters: [booleanParam(defaultValue: true, description: "just a button",name: "yes")])
+           def deployment = input(message: "is it new build? " , ok: "Button", parameters: [booleanParam(defaultValue: true,  name: "yes")])
            sh "scp -i deployment.yml service.yml /Gourav"
            sh "kubectl create -f deployment.yml"
             //   script{
