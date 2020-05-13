@@ -22,7 +22,7 @@ pipeline {
        
        stage ('Deploy') {
            steps {
-           sh "scp -i deployment.sh service.sh /Gourav"
+           sh "scp -i deployment.yml service.yml /Gourav"
            sh "kubectl create -f deployment.yml"
             //   script{
               //     def image_id = registry + ":$BUILD_NUMBER"
