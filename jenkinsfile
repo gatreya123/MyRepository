@@ -23,9 +23,18 @@ pipeline {
        stage ('Deploy') {
        
            steps {
-           def deployment = input(message: "is it new build? " , ok: "Button", parameters: [booleanParam(defaultValue: true,  name: "yes")])
-           sh "scp -i deployment.yml service.yml /Gourav"
+           def deployment = input message: 'is it new build ', ok: 'Button', parameters: [booleanParam(defaultValue: false, description: 'just push the button', name: 'yes')])])
+           
+           if (deployment == true) {
+           
+           sh "scp -i deployment.yml service.yml /home/ec2-user"
+           
+        
            sh "kubectl create -f deployment.yml"
+           
+           else 
+           {
+           echo "error"
             //   script{
               //     def image_id = registry + ":$BUILD_NUMBER"
                //    sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
