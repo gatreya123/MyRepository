@@ -32,7 +32,7 @@ pipeline {
         
            sh "kubectl create -f deployment.yml"
           // }
-           else 
+          // else 
         //   {
          //  echo "error"
             //   script{
