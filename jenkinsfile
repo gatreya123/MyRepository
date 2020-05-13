@@ -31,7 +31,7 @@ pipeline {
           sh "ssh -T root@3.20.205.215"
            scp "scp -r deployment.yml service.yml /Gourav"
           sh "ssh -T root@3.20.205.215 kubectl create -f deployment.yml"
-           
+           sh "ssh -T root@3.20.205.215 kubectl create -f service.yml"
         
            
           }
