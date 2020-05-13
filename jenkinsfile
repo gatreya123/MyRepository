@@ -23,23 +23,23 @@ pipeline {
        stage ('Deploy') {
        
         steps {
-         //  def deployment = input (message: 'is it new build ', ok: 'Button', parameters: [booleanParam(defaultValue: false, description: 'just push the button', name: 'yes')])
+    def deployment = input (message: 'is it new build ', ok: 'Button', parameters: [booleanParam(defaultValue: false, description: 'just push the button', name: 'yes')])
            
-          // if (deployment == true) {
-           sh "ssh -T root@3.20.205.215"
+           if (deployment == true) {
+          
+         
+          sh "ssh -T root@3.20.205.215"
            scp "scp -r deployment.yml service.yml /Gourav"
-           sh "ssh -T root@3.20.205.215 kubectl create -f deployment.yml"
+          sh "ssh -T root@3.20.205.215 kubectl create -f deployment.yml"
            
         
            
-          // }
-          // else 
-        //   {
-         //  echo "error"
-            //   script{
-              //     def image_id = registry + ":$BUILD_NUMBER"
-               //    sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
-          //    }
+          }
+         else 
+         {
+          echo "error"
+ 
+            }
            }
        }
    }}
