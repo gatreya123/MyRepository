@@ -10,9 +10,8 @@ node {
         customImage.push()
     }
 
-     
-    sh "sudo cp -i deployment.yml service.yml /Gourav"
-    sh "sudo  kubectl create -f deployment.yml"
-    sh "sudo kubectl create -f service.yml"
-  
+                   def image_id = registry + ":$BUILD_NUMBER"
+                   sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
+              
+           
 }
