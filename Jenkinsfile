@@ -11,8 +11,8 @@ node {
     }
 
      
-    sh "cp -i deployment.yml service.yml /Gourav"
-    sh " kubectl create -f deployment.yml"
-    sh "kubectl create -f service.yml"
+    sh "sudo cp -i deployment.yml service.yml /Gourav"
+    sh "sudo  kubectl create -f deployment.yml"
+    sh "sudo kubectl create -f service.yml"
   
 }
