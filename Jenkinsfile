@@ -1,26 +1,18 @@
-pipeline {
-  agent any
-    
-  tools {nodejs "node"}
-    
-  stages {
-        
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/gustavoapolinario/node-todo-frontend'
-      }
+node {
+
+    checkout scm
+
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+
+        def customImage = docker.build("miltonc/dockerwebapp")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
     }
-        
-    stage('Install dependencies') {
-      steps {
-        sh 'npm install'
-      }
-    }
+
      
-    stage('Test') {
-      steps {
-         sh 'npm test'
-      }
-    }      
-  }
+    sh "cp -i deployment.yml service.yml /Gourav"
+    sh " kubectl create -f deployment.yml"
+    sh "kubectl create -f service.yml"
+  
 }
